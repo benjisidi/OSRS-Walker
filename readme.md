@@ -31,19 +31,20 @@ If you wish to test the program's navigation, follow these steps:
 
 ## File Structure
 
-| File/Folder                | Contents                                                     |
-| -------------------------- | ------------------------------------------------------------ |
-| dijkstra_shortest_path.py  | Contains vertex and graph objects, and a function for implementing dijkstra's shortest path. |
-| interface.py               | Houses the functions for interacting with the OSBuddy window |
-| lazarus.py                 | Houses all functions related to taking human-like action (moving the mouse, typing, clicking, and combinations thereof) |
-| nearest_node.txt           | Records the node nearest to the last know player position    |
-| vision.py                  | Houses all functions related to interpreting visual (screenshot) information from the game |
-| walker.py                  | Houses all functions related to the navigation (graph traversal) system, with the exception of *dijkstra_shortest_path.py* |
-| Assets/f2p_navmap.png      | A map isolating only impassable objects and terrain          |
-| Assets/f2p_navmap.psd      | Multi-layer file with full colour map, only obstacles, and only navpoints |
-| Assets/f2p_nodes.png       | The navpoint-only layer of the navmap                        |
-| Assets/f2p_world_map.png   | Full colour world map                                        |
-| Assets/player_adjacent.bmp | Mask of only game squares directly adjacent to the player    |
+| File/Folder                      | Contents                                                     |
+| -------------------------------- | ------------------------------------------------------------ |
+| dijkstra_shortest_path.py        | Contains vertex and graph objects, and a function for implementing dijkstra's shortest path. |
+| interface.py                     | Houses the functions for interacting with the OSBuddy window |
+| lazarus.py                       | Houses all functions related to taking human-like action (moving the mouse, typing, clicking, and combinations thereof) |
+| nearest_node.txt                 | Records the node nearest to the last know player position    |
+| vision.py                        | Houses all functions related to interpreting visual (screenshot) information from the game |
+| walker.py                        | Houses all functions related to the navigation (graph traversal) system, with the exception of *dijkstra_shortest_path.py* |
+| Assets/f2p_navmap.png            | A map isolating only impassable objects and terrain          |
+| Assets/f2p_navmap.psd            | Multi-layer file with full colour map, only obstacles, and only navpoints |
+| Assets/f2p_nodes.png             | The navpoint-only layer of the navmap                        |
+| Assets/f2p_world_map.png         | Full colour world map                                        |
+| Assets/player_adjacent.bmp       | Mask of only game squares directly adjacent to the player    |
+| Assets/f2p_navmap_with_nodes.png | Map containing both obstacles and navpoints                  |
 
 
 ## Future Improvements
