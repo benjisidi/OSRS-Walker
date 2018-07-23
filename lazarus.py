@@ -291,6 +291,31 @@ def smith_item(anvil_loc, bank_loc, metal, item, duration, nearest_node, worldma
 				random_type(str(smelt_commands[metal]))
 			finished = inventory_complete(smelt_slots[metal])
 
+# Resets the compass to North by
+# holding a direction until the N is in
+# the correct location
+def reset_compass():
+	pag.keyDown('right')
+	while not pag.pixelMatchesColor(1117, 48, (131,10,11)):
+		pass
+	pag.keyUp('right')
+
+# Open the stat tab, click a random stat, wait and then close the window
+def check_stats():
+	stat = skillKeys[np.random.randint(0, len(skillKeys))]
+	clk(*button_px(*tabCoords['Stats']))
+	clk(*button_px(*tabCoords[stat]))
+	random_mouse(5)
+	clk(*button_px(*tabCoords['Close Skill']))
+	clk(*button_px(*tabCoords['Inventory']))
+
+# Open a random tab on the UI
+def random_tab():
+	tab = tabKeys[np.random.randint(0, len(tabKeys))]
+	clk(*button_px(*tabCoords[tab]))
+	random_mouse(5)
+	clk(*button_px(*tabCoords['Inventory']))
+
 
 # Set up global information
 ore_colours = {'iron':(43, 22, 14), 'coal':(26,26,15)}
@@ -318,3 +343,55 @@ for metal in smelt_commands.keys():
 	else:
 		slot = (col-1, row+1)
 	smelt_slots[metal] = slot
+
+
+# Generate global list of tab coordinates
+topRowYmin = 391
+topRowYmax = 414
+botRowYmin = 686
+botRowYmax = 708
+Xmin = 1042
+width = 31
+offset = 2
+
+topKeys = ['Combat','Stats','Quests', 'Inventory', 'Equipment','Prayer','Spells']
+botKeys = ['Clan', 'Friends','Blocked','Logout','Settings','Emotes','Music']
+
+tabKeys = topKeys + botKeys
+
+topVals = [(Xmin + i*(width+offset), topRowYmin,
+			Xmin + i*(width+offset)+width, topRowYmax) for i,_ in enumerate(topKeys)]
+botVals = [(Xmin + i*(width+offset), botRowYmin,
+			Xmin + i*(width+offset)+width, botRowYmax) for i,_ in enumerate(botKeys)]
+
+tabCoords = {}
+for l in ((topKeys, topVals), (botKeys, botVals)):
+	for i, key in enumerate(l[0]):
+		tabCoords[key] = l[1][i]
+
+# Declare in-tab coords
+
+# ---Logout---
+tabCoords['Logout Button'] = (1090, 620, 1220, 645)
+tabCoords['World Switcher'] = (1090, 560, 1220, 585)
+
+# ---Skills---
+skillKeys = ['Attack', 'Strength', 'Defence', 'Range', 'Prayer', 'Magic',
+			'Runecraft', 'Construction', 'HP', 'Agility', 'Herblore',
+			'Theiving', 'Crafting', 'Fletching', 'Slayer', 'Hunting',
+			'Mining', 'Smithing', 'Fishing', 'Cooking', 'Firemaking',
+			'Woodcutting', 'Farming']
+skillCenters = [(1093, 436), (1093, 467), (1093, 498)
+					,(1093, 529), (1093, 560), (1093, 591)
+					,(1093, 622), (1093, 653), (1156, 436)
+					,(1156, 467), (1156, 498), (1156, 529)
+					,(1156, 560), (1156, 591), (1156, 622)
+					,(1156, 653), (1219, 436), (1219, 467)
+					,(1219, 498), (1219, 529), (1219, 560)
+					,(1219, 591), (1219, 622)]
+xOff = 60
+yOff = 30  # Skill boxes are 60x30px
+for i, key in enumerate(skillKeys):
+	tabCoords[key] = (skillCenters[i][0] - .5*xOff, skillCenters[i][1] - .5*yOff,
+					  skillCenters[i][0] + .5*(xOff-1), skillCenters[i][1] + .5*(yOff-1))
+tabCoords['Close Skill'] = (743, 131, 765, 153)
