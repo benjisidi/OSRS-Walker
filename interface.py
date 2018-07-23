@@ -61,3 +61,5 @@ def logout():
 
 
 nearest_node, worldmap, waypoint_graph  = setup(login=False, resize=True)
+destination = (1227, 334) # Varrock west bank
+nearest_node = walker.go(destination, nearest_node, worldmap, waypoint_graph)
